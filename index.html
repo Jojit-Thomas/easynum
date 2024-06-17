@@ -11,17 +11,34 @@
       href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Playwrite+PL:wght@100..400&display=swap"
       rel="stylesheet"
     />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playwrite+SK:wght@100..400&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+
     <style>
       body {
         font-family: "Inter", sans-serif;
       }
       .output::placeholder {
         color: gray;
+        font-family: "Indie Flower", cursive;
       }
       .indie-flower-regular {
         font-family: "Indie Flower", cursive;
         font-weight: 400;
         font-style: normal;
+      }
+      .roboto-regular {
+        font-family: "Roboto", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+      }
+      .roboto-value {
+        font-family: "Roboto", sans-serif;
+      }
+      .indie-placeholder {
+        font-family: "Indie Flower", cursive;
       }
     </style>
   </head>
@@ -44,14 +61,14 @@
             type="number"
             id="numberInput"
             placeholder="Enter a number"
-            class="input w-full p-3 pl-10 border border-gray-300 rounded-md"
+            class="input w-full p-3 pl-10 border border-gray-300 rounded-md indie-placeholder"
             oninput="formatNumber()"
           />
         </div>
         <div class="col-span-1">
           <div
             id="result"
-            class="output w-full p-3 border border-gray-300 rounded-md bg-gray-100"
+            class="output w-full p-3 border border-gray-300 rounded-md bg-gray-100 indie-flower-regular"
             placeholder="Formatted result will appear here"
           >
             Formatted result will appear here
@@ -166,8 +183,26 @@
           format,
         );
 
-        document.getElementById("result").textContent =
-          `${convertedAmount.symbol}${formattedConvertedAmount} (${currency === "usd" ? "$" : "₹"}${formattedNumber})`;
+        const resultDiv = document.getElementById("result");
+        const numberInput = document.getElementById("numberInput");
+
+        if (num === 0) {
+          resultDiv.textContent = "Formatted result will appear here";
+          resultDiv.classList.remove("roboto-value");
+          resultDiv.classList.add("indie-flower-regular");
+        } else {
+          resultDiv.textContent = `${convertedAmount.symbol}${formattedConvertedAmount} (${currency === "usd" ? "$" : "₹"}${formattedNumber})`;
+          resultDiv.classList.remove("indie-flower-regular");
+          resultDiv.classList.add("roboto-value");
+        }
+
+        if (numberInput.value === "") {
+          numberInput.classList.add("indie-placeholder");
+          numberInput.classList.remove("roboto-regular");
+        } else {
+          numberInput.classList.remove("indie-placeholder");
+          numberInput.classList.add("roboto-regular");
+        }
       }
 
       function changeCurrency() {
