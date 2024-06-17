@@ -1,15 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>EasyNum - Convert and Format Numbers with Ease</title>
-    <meta name="description" content="EasyNum is a simple and efficient tool to convert and format numbers into readable formats with support for multiple currencies and number formats.">
-    <link rel="icon" href="./public/favicon.ico" type="image/x-icon">
-    <meta property="og:title" content="EasyNum - Convert and Format Numbers with Ease">
-    <meta property="og:description" content="EasyNum is a simple and efficient tool to convert and format numbers into readable formats with support for multiple currencies and number formats.">
-    <meta property="og:image" content="https://i.imgur.com/xZJpMhP.png">
-    <meta property="og:url" content="https://jojit.in/EasyNum">
+    <meta
+      name="description"
+      content="EasyNum is a simple and efficient tool to convert and format numbers into readable formats with support for multiple currencies and number formats."
+    />
+    <link rel="icon" href="./public/favicon.ico" type="image/x-icon" />
+    <meta property="og:title" content="EasyNum - Convert and Format Numbers with Ease" />
+    <meta
+      property="og:description"
+      content="EasyNum is a simple and efficient tool to convert and format numbers into readable formats with support for multiple currencies and number formats."
+    />
+    <meta property="og:image" content="https://i.imgur.com/xZJpMhP.png" />
+    <meta property="og:url" content="https://jojit.in/EasyNum" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -32,7 +38,6 @@
       .indie-flower-regular {
         font-family: "Indie Flower", cursive;
         font-weight: 400;
-        font-style: normal;
       }
       .roboto-regular {
         font-family: "Roboto", sans-serif;
@@ -48,12 +53,8 @@
     </style>
   </head>
 
-  <body
-    class="bg-gray-50 flex items-center justify-center min-h-screen indie-flower-regular"
-  >
-    <div
-      class="w-full max-w-2xl mx-auto p-6 sm:p-8 bg-white rounded-xl shadow-lg space-y-4"
-    >
+  <body class="bg-gray-50 flex items-center justify-center min-h-screen indie-flower-regular p-4">
+    <div class="w-full max-w-2xl mx-auto p-6 sm:p-8 bg-white rounded-xl shadow-lg space-y-4">
       <h1 class="text-2xl font-semibold text-gray-900 mb-4">EasyNum</h1>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-end">
         <div class="relative col-span-1">
@@ -66,7 +67,7 @@
             type="number"
             id="numberInput"
             placeholder="Enter a number"
-            class="input w-full p-3 pl-10 border border-gray-300 rounded-md indie-placeholder"
+            class="input w-full p-3 pl-10 border border-gray-300 rounded-md placeholder-indie-flower-regular"
             oninput="formatNumber()"
           />
         </div>
@@ -113,6 +114,109 @@
       </div>
     </div>
 
-    <script src="easyNum.js"></script>
+    <!-- Support Chat Button -->
+    <div class="fixed bottom-4 right-4 z-50">
+      <button
+        id="supportButton"
+        class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-blue-600 transition duration-300"
+      >
+        Chat
+      </button>
+    </div>
+
+    <!-- Support Chat Container (hidden by default) -->
+    <div
+      id="supportChatContainer"
+      class="fixed bottom-0 left-0 right-0 bg-white rounded-t-xl z-50 transform translate-y-full transition-transform duration-300"
+    >
+      <div
+        class="bg-blue-500 text-white py-2 px-4 font-semibold rounded-t-lg flex justify-between items-center"
+      >
+        <span>Support Chat</span>
+        <button id="closeButton" class="text-white hover:text-gray-300 focus:outline-none">
+          <svg
+            class="h-6 w-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            ></path>
+          </svg>
+        </button>
+      </div>
+      <div class="p-4">
+        <p class="text-gray-800">Welcome! How can we assist you today?</p>
+        <!-- Add chat history if needed -->
+        <div class="mt-4">
+          <input
+            id="name"
+            type="text"
+            placeholder="Your Name"
+            class="w-full border border-gray-300 rounded-full py-2 px-4 mb-2"
+          />
+          <input
+            id="email"
+            type="email"
+            placeholder="Your Email"
+            class="w-full border border-gray-300 rounded-full py-2 px-4 mb-2"
+          />
+          <input
+            id="message"
+            type="text"
+            placeholder="Type your message..."
+            class="w-full border border-gray-300 rounded-full py-2 px-4 mb-2"
+          />
+          <button
+            id="sendButton"
+            class="w-full bg-blue-500 text-white px-4 py-2 rounded-full hover:bg-blue-600 transition duration-300"
+          >
+            Send
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Backdrop for Modal -->
+    <div
+      id="backdrop"
+      class="fixed top-0 left-0 w-full h-full bg-black opacity-50 z-40 hidden"
+    ></div>
+
+    <!-- Success Modal -->
+    <div
+      id="successModal"
+      class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-lg shadow-lg z-50 hidden"
+    >
+      <p class="text-green-500">Support request sent successfully!</p>
+      <button
+        id="closeSuccessModal"
+        class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300"
+      >
+        Close
+      </button>
+    </div>
+
+    <!-- Error Modal -->
+    <div
+      id="errorModal"
+      class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-lg shadow-lg z-50 hidden"
+    >
+      <p class="text-red-500">Failed to send support request. Please try again later.</p>
+      <button
+        id="closeErrorModal"
+        class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300"
+      >
+        Close
+      </button>
+    </div>
+
+    <script src="./easyNum.js"></script>
+    <script src="./support.js"></script>
   </body>
 </html>
