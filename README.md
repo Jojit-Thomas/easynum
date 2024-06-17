@@ -1,6 +1,6 @@
-# NumFormatr
+# EasyNum
 
-NumFormatr is a web-based tool that converts large numbers into easily readable 'lakh' and 'crore' formats, making it simpler to interpret big figures.
+EasyNum is a web-based tool that converts large numbers into easily readable 'lakh' and 'crore' formats, making it simpler to interpret big figures.
 
 ## Features
 
@@ -16,7 +16,7 @@ NumFormatr is a web-based tool that converts large numbers into easily readable 
 
 ## Access
 
-To use NumFormatr, visit the following link: [NumFormatr](https://jojit.in/NumFormatr).
+To use EasyNum, visit the following link: [EasyNum](https://jojit.in/EasyNum).
 
 ## Technologies
 
@@ -24,4 +24,4 @@ To use NumFormatr, visit the following link: [NumFormatr](https://jojit.in/NumFo
 - CSS (TailwindCSS)
 - JavaScript
 
-Enjoy using NumFormatr for your numeric conversion needs!
+Enjoy using EasyNum for your numeric conversion needs!
