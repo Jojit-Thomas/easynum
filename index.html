@@ -48,7 +48,6 @@
     </style>
   </head>
 
-
   <body
     class="bg-gray-50 flex items-center justify-center min-h-screen indie-flower-regular"
   >
@@ -101,9 +100,10 @@
             <option value="original">Original Number</option>
             <option value="thousand">Thousands</option>
             <option value="lakh">Lakhs</option>
-            <option value="crore" selected>Crores</option>
+            <option value="crore">Crores</option>
             <option value="million">Millions</option>
             <option value="billion">Billions</option>
+            <option value="auto" selected>Auto</option>
           </select>
         </div>
       </div>
@@ -113,119 +113,6 @@
       </div>
     </div>
 
-    <script>
-      async function convertNumberToReadableFormat(num, format) {
-        const billion = 1000000000;
-        const million = 1000000;
-        const crore = 10000000;
-        const lakh = 100000;
-        const thousand = 1000;
-
-        switch (format) {
-          case "billion":
-            return num >= billion
-              ? (num / billion).toFixed(2) + " billion"
-              : num.toFixed(2);
-          case "million":
-            return num >= million
-              ? (num / million).toFixed(2) + " million"
-              : num.toFixed(2);
-          case "crore":
-            return num >= crore
-              ? (num / crore).toFixed(2) + " crore"
-              : num.toFixed(2);
-          case "lakh":
-            return num >= lakh
-              ? (num / lakh).toFixed(2) + " lakh"
-              : num.toFixed(2);
-          case "thousand":
-            return num >= thousand
-              ? (num / thousand).toFixed(2) + " thousand"
-              : num.toFixed(2);
-          default:
-            return num.toFixed(2);
-        }
-      }
-
-      async function convertCurrency(amount, fromCurrency, toCurrency) {
-        try {
-          const response = await fetch(
-            `https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@2024-04-26/v1/currencies/${fromCurrency}.json`,
-          );
-          const data = await response.json();
-          const rate = data[fromCurrency][toCurrency];
-          const amountInCurrency = (amount * rate).toFixed(2);
-          return {
-            rate,
-            amount: amountInCurrency,
-            symbol: toCurrency === "usd" ? "$" : "₹",
-          };
-        } catch (error) {
-          console.error("Error fetching exchange rates:", error);
-          return { rate: 1, amount: amount, symbol: "" };
-        }
-      }
-
-      async function formatNumber() {
-        const num =
-          parseFloat(document.getElementById("numberInput").value) || 0;
-        const format = document.getElementById("formatSelect").value;
-        const currency = document.getElementById("currencySelect").value;
-
-        const formattedNumber = await convertNumberToReadableFormat(
-          num,
-          format,
-        );
-
-        let convertedAmount;
-        if (currency === "usd") {
-          convertedAmount = await convertCurrency(num, "usd", "inr");
-        } else {
-          convertedAmount = await convertCurrency(num, "inr", "usd");
-        }
-
-        const formattedConvertedAmount = await convertNumberToReadableFormat(
-          parseFloat(convertedAmount.amount),
-          format,
-        );
-
-        const resultDiv = document.getElementById("result");
-        const numberInput = document.getElementById("numberInput");
-
-        if (num === 0) {
-          resultDiv.textContent = "Formatted result will appear here";
-          resultDiv.classList.remove("roboto-value");
-          resultDiv.classList.add("indie-flower-regular");
-        } else {
-          resultDiv.textContent = `${convertedAmount.symbol}${formattedConvertedAmount} (${currency === "usd" ? "$" : "₹"}${formattedNumber})`;
-          resultDiv.classList.remove("indie-flower-regular");
-          resultDiv.classList.add("roboto-value");
-        }
-
-        if (numberInput.value === "") {
-          numberInput.classList.add("indie-placeholder");
-          numberInput.classList.remove("roboto-regular");
-        } else {
-          numberInput.classList.remove("indie-placeholder");
-          numberInput.classList.add("roboto-regular");
-        }
-      }
-
-      function changeCurrency() {
-        const currency = document.getElementById("currencySelect").value;
-        const currencySymbol = document.getElementById("currencySymbol");
-        const formatSelect = document.getElementById("formatSelect");
-
-        if (currency === "usd") {
-          currencySymbol.textContent = "$";
-          formatSelect.value = "million";
-        } else if (currency === "inr") {
-          currencySymbol.textContent = "₹";
-          formatSelect.value = "crore";
-        }
-
-        formatNumber();
-      }
-    </script>
+    <script src="easyNum.js"></script>
   </body>
 </html>
