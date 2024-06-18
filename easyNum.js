@@ -1,12 +1,17 @@
 function formatNumberWithCommas(num, format) {
-  let [integerPart, decimalPart] = num.toString().split(".");
+  const [numericPart, suffix] = num.split(" ");
+  let [integerPart, decimalPart] = numericPart.split(".");
   decimalPart = decimalPart ? "." + decimalPart : "";
-  
-  // Use appropriate regex for USD and INR formats
-  let regex = format === "usd" ? /\B(?=(\d{3})+(?!\d))/g : /(\d)(?=(\d\d)+\d$)/g;
-  integerPart = integerPart.replace(regex, "$1,");
-  
-  return integerPart + decimalPart;
+
+  if (format === "inr" && integerPart.length > 3) {
+    let firstComma = integerPart.slice(-3);
+    let remaining = integerPart.slice(0, -3).replace(/\B(?=(\d{2})+(?!\d))/g, ",");
+    integerPart = remaining + "," + firstComma;
+  } else {
+    integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
+  return integerPart + decimalPart + (suffix ? " " + suffix : "");
 }
 
 function determineAutoFormat(num, currency) {
@@ -71,7 +76,7 @@ function displayResult(num, formattedNumber, currency, convertedAmount, formatte
     resultDiv.classList.remove("roboto-value");
     resultDiv.classList.add("indie-flower-regular");
   } else {
-    resultDiv.textContent = `${convertedAmount.symbol}${formatNumberWithCommas(formattedConvertedAmount, currency)} (${currency === "inr" ? "₹" : "$"}${formatNumberWithCommas(formattedNumber, currency === "usd" ? "inr" : "usd")})`;
+    resultDiv.textContent = `${convertedAmount.symbol}${formatNumberWithCommas(formattedConvertedAmount, currency === "inr" ? "usd" : "inr")} (${currency === "inr" ? "₹" : "$"}${formatNumberWithCommas(formattedNumber, currency)})`;
     resultDiv.classList.remove("indie-flower-regular");
     resultDiv.classList.add("roboto-value");
   }
