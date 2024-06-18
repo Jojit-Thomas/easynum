@@ -51,16 +51,17 @@ async function convertCurrency(amount, fromCurrency, toCurrency) {
 async function formatNumber() {
   const num = parseFloat(document.getElementById("numberInput").value) || 0;
   const currency = document.getElementById("currencySelect").value;
+  const format = document.getElementById("formatSelect").value;
 
   // Determine and format the original number
-  let originalFormat = determineAutoFormat(num, currency);
+  let originalFormat = format === "auto" ? determineAutoFormat(num, currency) : format;
   let formattedNumber = convertNumberToReadableFormat(num, originalFormat);
 
   // Perform currency conversion and formatting
   let convertedAmount = await convertCurrency(num, currency, currency === "usd" ? "inr" : "usd");
 
   // Determine and format the converted amount
-  let convertedFormat = determineAutoFormat(parseFloat(convertedAmount.amount), currency === "usd" ? "inr" : "usd");
+  let convertedFormat = format === "auto" ? determineAutoFormat(parseFloat(convertedAmount.amount), currency === "usd" ? "inr" : "usd") : format;
   let formattedConvertedAmount = convertNumberToReadableFormat(parseFloat(convertedAmount.amount), convertedFormat);
 
   // Display the results
