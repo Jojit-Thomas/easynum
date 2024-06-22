@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
       headers: {
         accept: "application/json",
         "api-key":
-          "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",
+          "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",
         "content-type": "application/json",
       },
       body: JSON.stringify({
