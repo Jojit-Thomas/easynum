@@ -1,27 +1,61 @@
-# EasyNum
+# EasyNum 🔢💱
 
-EasyNum is a web-based tool that converts large numbers into easily readable 'lakh' and 'crore' formats, making it simpler to interpret big figures.
+Easily convert between currencies and number formats. Perfect for understanding startup funding and international business figures.
+
+![EasyNum Screenshot](https://easynum.jojit.in/placeholder.png)
+
+## Why EasyNum?
+
+Ever stumbled on "$1 million" in a startup article and wondered, "How many crores is that?" EasyNum was born to solve this exact problem.
 
 ## Features
 
-- **Simple Interface:** User-friendly design for effortless number conversion.
-- **Quick Conversion:** Instantly converts numbers into 'lakh' or 'crore' based on the value entered.
-- **Accessibility:** Optimized for accessibility, ensuring it can be used by everyone.
+- 💰 Multi-currency support
+- 🔄 Real-time conversion
+- 📱 Responsive design
+- 🌍 Auto-detects user's currency
 
-## Usage
+## Tech Stack
 
-1. Enter the number you want to convert in the input field.
-2. Click the "Convert" button.
-3. View the converted number displayed below the button.
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
 
-## Access
+## Quick Start
 
-To use EasyNum, visit the following link: [EasyNum](https://jojit.in/EasyNum).
+1. Clone:
+   ```
+   git clone https://github.com/yourusername/easynum.git
+   cd easynum
+   ```
 
-## Technologies
+2. Install:
+   ```
+   npm install
+   ```
 
-- HTML
-- CSS (TailwindCSS)
-- JavaScript
+3. Set up:
+   Create `.env` file:
+   ```
+   VITE_BREVO_API_KEY=your_brevo_api_key_here
+   ```
 
-Enjoy using EasyNum for your numeric conversion needs!
+4. Run:
+   ```
+   npm run dev
+   ```
+
+5. Open `http://localhost:5173`
+
+## Contribute
+
+Got ideas? Open an issue or submit a PR!
+
+## Get in Touch
+
+Jojit Thomas - [Linkedin](https://www.linkedin.com/in/jojitthomas/)
+
+---
+
+From an aspiring developer to fellow startup enthusiasts. Happy converting! 🚀
