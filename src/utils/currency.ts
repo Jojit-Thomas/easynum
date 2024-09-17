@@ -459,22 +459,6 @@ export function convertNumberToReadableFormat(num: number, format: string): stri
     : num.toFixed(2);
 }
 
-export async function convertCurrency(amount: number, fromCurrency: string, toCurrency: string) {
-  try {
-    const [from, to] = [fromCurrency, toCurrency].map((currency) => currency.toLowerCase());
-    const response = await fetch(
-      `https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@2024-04-26/v1/currencies/${from}.json`
-    );
-    const data = await response.json();
-    const rate: number = data[from][to]
-
-    return { rate, amount: (amount * rate).toFixed(2), symbol: currencySymbols[toCurrency] || "" };
-  } catch (error) {
-    console.error("Error fetching exchange rates:", error);
-    return { rate: 1, amount: amount.toString(), symbol: "" };
-  }
-}
-
 export function mapCurrency(countryCode: string): string {
   return currencyMap[countryCode] || "USD";
 }
